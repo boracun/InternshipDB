@@ -3,8 +3,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import javax.lang.model.util.ElementScanner6;
-
 public class DatabaseConnection
 {
     public static void main(String [] args) throws SQLException
@@ -203,15 +201,23 @@ public class DatabaseConnection
             stmt.executeUpdate("INSERT INTO apply VALUES(" +
                 "'21000004', " + 
                 "'C107'); ");
-            
-            
             System.out.println("apply population complete.");
+            
+            System.out.println(divider);
 
-            ResultSet rs = stmt.executeQuery("select * from student");
+            //Printing the student table
+            ResultSet rs = stmt.executeQuery("SELECT * FROM student");
 
+            System.out.println("Student table:");
+            System.out.printf("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s%n", "sid", "sname", "bdate", "address", "scity", "year", "gpa", "nationality");
             while(rs.next())
-                System.out.println(rs.getInt("sid") + " " + rs.getString("sname") + " " + rs.getString("bdate"));
+            {
+                System.out.printf("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s%n", rs.getString("sid"), rs.getString("sname"), rs.getDate("bdate"), rs.getString("address"), rs.getString("scity"), rs.getString("year"), rs.getString("gpa"), rs.getString("nationality"));
+            }
+            System.out.println(divider);
             con.close();
+            System.out.println("Connection closed.");
+            System.out.println("End of program.");
         }
         catch(Exception e)
         {
