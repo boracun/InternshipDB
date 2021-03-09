@@ -1,14 +1,67 @@
-.container {
-    display: flex;
-    width: 350px;
-    height: 500px;
-    background-color: red;
-    justify-content: center;
-    align-items: center;
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(90deg, lightblue, pink);
 }
 
-.form-input {
-    background-color: blue;
-    width: 150px;
-    height: 100px;
+form {
+    position:relative;
+    z-index: 4;
+    margin-left: 45px;
+    padding: 20px 0px 20px 20px;
+    color: #FFFFFF;
+}
+
+label {
+    font-size: 20px;
+}
+
+h2 {
+    z-index: 5;
+    margin-top: 60px;
+    margin-left: 90px;
+}
+
+input[type=text] select {
+    width: 95%;
+    height: 3%;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    padding-left: 15px;
+    border-color: black;
+}
+
+input:focus, select:focus{
+    border-style: solid;
+    border-color: #FFD11A;
+}
+
+button {
+    width: 50%;
+    height: 25px;
+    margin-top: 15px;
+    margin-left: 25px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFD11A;
+    font-weight: 700;
+}
+
+.main-div {
+    position: absolute;
+    z-index: 3;
+    width: fit-content;
+    height: fit-content;
+    display: flex; /*Form comes in here*/
+    margin: 13% 0px 100px 25%;
+}
+
+.main-background {
+    background: rgb(0, 0, 0);
+    opacity: 0.6;
+    width: 100%; /*To fill the entire main div*/
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+    border-radius: 1%;
 }
