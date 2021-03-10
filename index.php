@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php 
+session_start();
+
+$_SESSION;
+
+?>
+
 <html lang="en">
 <meta charset="UTF-8">
 <title>Internship</title>
