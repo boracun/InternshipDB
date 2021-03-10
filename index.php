@@ -12,11 +12,19 @@ session_start();
 
         //both are filled because of the requirements
 
+        //register if needed
         $query = "INSERT INTO student VALUES ('$pass', '$user', null, null, null, null, null, null);";
-
         mysqli_query($con, $query);
 
-        
+        //login
+        $query = "SELECT * FROM student WHERE sid = $pass;";
+        $result = mysqli_query($con, $query);
+
+        $data = mysqli_fetch_assoc($result);
+
+        $_SESSION['sid'] = $data['sid'];
+
+
         header("Location: student-internships.php");
         die;
     }

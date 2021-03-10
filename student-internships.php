@@ -2,7 +2,9 @@
 session_start();
     require_once('connection.php');
 
-    $query = "SELECT cid, cname, quota FROM company NATURAL JOIN apply WHERE sid = '21000001';";
+    $pass = $_SESSION['sid'];
+
+    $query = "SELECT cid, cname, quota FROM company NATURAL JOIN apply WHERE sid = '$pass';";
 
     $response = @mysqli_query($con, $query);
 
