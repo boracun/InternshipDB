@@ -1,22 +1,41 @@
 <?php 
 session_start();
+    $_SESSION;
 
-$_SESSION;
+    include("connection.php");
+    include("functions.php");
 
+    if($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+        $user = $_POST['user'];
+        $pass = $_POST['pass'];
+
+        //both are filled because of the requirements
+
+        $query = "INSERT INTO student VALUES ('$pass', '$user', null, null, null, null, null, null);";
+
+        mysqli_query($con, $query);
+
+        
+        header("Location: student-internships.php");
+        die;
+    }
 ?>
 
 <html lang="en">
-<meta charset="UTF-8">
-<title>Internship</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="styles.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&amp;family=Poppins:wght@300&amp;display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Internship</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&amp;family=Poppins:wght@300&amp;display=swap" rel="stylesheet">
+</head>
 
 <body>
     <div class="main-div">
         <div class="main-background"></div>
         <h2>Internship Application System</h2>
-        <form id="survey-form">
+        <form id="survey-form" method="post">
             <label for="name" id="name-label">
                 Name<br />
                 <input type="text" id="user" name="user" placeholder="Username" required />
@@ -29,7 +48,7 @@ $_SESSION;
                 <input type="password" id="pass" name="pass" placeholder="Password" required />
             </label>
 
-            <button type="submit">Log in</button>
+            <button type="submit" value="Login">Log in</button>
         </form>
     </div>
 

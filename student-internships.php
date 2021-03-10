@@ -1,4 +1,5 @@
 <?php
+session_start();
     require_once('connection.php');
 
     $query = "SELECT cid, cname, quota FROM company NATURAL JOIN apply WHERE sid = '21000001';";
@@ -7,7 +8,7 @@
 
     if ($response)
     {
-        echo '<table align="left" cellspacing="5" cellpadding="8">
+        echo '<table style="margin: 10% 0% 0% 35%;" align="left" cellspacing="5" cellpadding="8">
 
         <tr><td align="left"><b>Company ID</b></td>
         <td align="left"><b>Company Name</b></td>
@@ -18,7 +19,7 @@
             echo '<tr><td align="left">' .
             $row['cid'] . '</td><td align="left">' .
             $row['cname'] . '</td><td align="left">' .
-            $row['quota'] . '</td><td align="left">';
+            $row['quota'] . '</td><td align="left"><button style="width: fit-content;">Cancel</button></td>';
 
             echo '</tr>';
         }
@@ -34,3 +35,18 @@
 
     mysqli_close($con);
 ?>
+
+<html lang="en">
+<meta charset="UTF-8">
+<title>Internship</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="styles.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&amp;family=Poppins:wght@300&amp;display=swap" rel="stylesheet">
+
+<head>
+<body>
+    <header>
+        <h1>Internship Application System</h1>
+    </header>
+</body>
+</html>
