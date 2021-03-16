@@ -4,6 +4,22 @@ session_start();
 
     $pass = $_SESSION['sid'];
 
+    //check if the student has 3 internships
+    $query = "SELECT *
+              FROM (SELECT COUNT(*) AS num_of_rows
+                    FROM apply
+                    WHERE sid = '21000001') AS num
+               WHERE num_of_rows IN (3);";
+
+    $response = @mysqli_query($con, $query);
+    $no_of_companies = mysqli_fetch_assoc($response);
+
+    if ($no_of_companies['num_of_rows'] >= '3')
+    {
+        header("Location: 3-company-error.php");
+    }
+
+
     $query = "SELECT cid, cname, quota 
               FROM company 
               WHERE (cid NOT IN (SELECT cid

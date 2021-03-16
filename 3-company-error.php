@@ -12,12 +12,10 @@
     </header>
     <main>
         Error: You can apply to at most 3 companies.
-    </main>
 
-    <footer>
         <a href="student-internships.php">
         <button id="new-internship-button">Back to Welcome page</button>
         </a>
-    </footer>   
+    </main> 
 </body>
 </html>

@@ -57,7 +57,7 @@ session_start();
 
     <footer>
         <a href="company-list.php">
-        <button id="new-internship-button" href="company-list.php">Apply for a new internship!</button>
+        <button id="new-internship-button">Apply for a new internship!</button>
         </a>
     </footer>   
 </body>
