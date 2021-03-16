@@ -3,7 +3,6 @@ session_start();
     $_SESSION;
 
     include("connection.php");
-    include("functions.php");
 
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
@@ -12,21 +11,31 @@ session_start();
 
         //both are filled because of the requirements
 
-        //register if needed
-        $query = "INSERT INTO student VALUES ('$pass', '$user', null, null, null, null, null, null);";
-        mysqli_query($con, $query);
-
         //login
-        $query = "SELECT * FROM student WHERE sid = $pass;";
-        $result = mysqli_query($con, $query);
+        $query = "SELECT * FROM student WHERE sid = '$pass' AND sname = '$user';";
+        $response = mysqli_query($con, $query);
 
-        $data = mysqli_fetch_assoc($result);
+        if ($response)
+        {
+            $data = mysqli_fetch_assoc($response);
 
-        $_SESSION['sid'] = $data['sid'];
+            if (@(strtolower($data['sname']) == strtolower($user) && $data['sid'] === $pass))
+            {
+                $_SESSION['sid'] = $data['sid'];
+    
+    
+                header("Location: student-internships.php");
+                die;
+            }
+            
+        }
+        echo "Wrong login info!";
+        
 
+       // header("Location: wrong-login.php");
+       // die;
 
-        header("Location: student-internships.php");
-        die;
+        
     }
 ?>
 

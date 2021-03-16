@@ -8,13 +8,13 @@ session_start();
     $query = "SELECT *
               FROM (SELECT COUNT(*) AS num_of_rows
                     FROM apply
-                    WHERE sid = '21000001') AS num
+                    WHERE sid = '$pass') AS num
                WHERE num_of_rows IN (3);";
 
     $response = @mysqli_query($con, $query);
     $no_of_companies = mysqli_fetch_assoc($response);
 
-    if ($no_of_companies['num_of_rows'] >= '3')
+    if (@($no_of_companies['num_of_rows'] >= 3))
     {
         header("Location: 3-company-error.php");
     }
@@ -59,15 +59,16 @@ session_start();
                       WHERE sid = '$pass';";
             $no_of_companies = @mysqli_query($con, $query); //gets the number of companies
 
-            if($no_of_companies < 3)
-            {
-                $query = "INSERT INTO apply VALUES ('$pass', '$company_id');";
-                $result = mysqli_query($con, $query);
+            $query = "INSERT INTO apply VALUES ('$pass', '$company_id');";
+            $result = mysqli_query($con, $query);
 
-                if ($result)
-                {
-                    header("Location: student-internships.php");    //go back to student page
-                }
+            if ($result)
+            {
+                $query = "UPDATE company
+                          SET quota = quota - 1
+                          WHERE cid = '$company_id';";
+                $result = @mysqli_query($con, $query);
+                header("Location: application-success.php");    //go back to student page
             }
 
             else
@@ -106,13 +107,16 @@ session_start();
     <body>
         <form id="survey-form" method="post">
             <label for="company-id" id="company-id">
-                Name<br />
+                Company ID<br />
                 <input type="text" id="company-id" name="company-id" placeholder="Company ID" required />
                 <br />
             </label>
 
             <input type="submit" value="Apply"></button>
         </form>
+            <a href="student-internships.php">
+                <button style="margin-left: 50px;" id="new-internship-button">Back to Welcome page</button>
+            </a>
     </body>
 </body>
 </html>

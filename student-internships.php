@@ -24,7 +24,7 @@ session_start();
             $row['cid'] . '</td><td align="left">' .
             $row['cname'] . '</td><td align="left">' .
             $row['quota'] . '</td><td align="left">
-            <a href="cancel-successful.php?course=' . $row['cid'] . '"><button style="width: fit-content;">Cancel</button></a>
+            <a href="cancel-successful.php?company=' . $row['cid'] . '"><button style="width: fit-content;">Cancel</button></a>
             </td>';
 
             echo '</tr>';
@@ -53,12 +53,19 @@ session_start();
 <body>
     <header>
         <h1>Internship Application System</h1>
+        
     </header>
-
+    <a href="logout.php">
+        <button style="position: absolute;
+                       margin: 10% 0% 0% 0%;
+                       width: fit-content;
+                       height: fit-content;" class="logout-button">Log out</button>
+        </a>
     <footer>
         <a href="company-list.php">
-        <button id="new-internship-button">Apply for a new internship!</button>
+        <button style="margin: 5% 0% 0% 0%;" id="new-internship-button">Apply for a new internship!</button>
         </a>
+        
     </footer>   
 </body>
 </html>

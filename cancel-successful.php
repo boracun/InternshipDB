@@ -4,13 +4,25 @@ session_start();
 
     $pass = $_SESSION['sid'];
 
-    $course = $_GET['course'];
+    $course = $_GET['company'];
 
     $query = "DELETE FROM apply
               WHERE sid = '$pass' AND cid = '$course';";
 
     $response = @mysqli_query($con, $query);
 
+    if ($response)
+    {
+        $query = "UPDATE company
+                  SET quota = quota + 1
+                  WHERE cid = '$course';";
+
+        $response = @mysqli_query($con, $query);
+    }
+    else
+    {
+        header("Location: cancel-fail.php");
+    }
 
 
 ?>

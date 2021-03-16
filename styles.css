@@ -64,7 +64,7 @@ button {
 }
 
 input[type=submit] {
-    width: fit-content%;
+    width: fit-content;
     height: 25px;
     margin-top: 15px;
     margin-left: 25px;
@@ -84,6 +84,12 @@ table {
     width: fit-content;
     height: fit-content;
     margin: 22% 0% 0% -21%;
+}
+
+.logout-button{
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
 }
 
 #survey-form {
