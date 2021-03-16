@@ -12,16 +12,20 @@ session_start();
     {
         echo '<table style="margin: 10% 0% 0% 35%;" align="left" cellspacing="5" cellpadding="8">
 
-        <tr><td align="left"><b>Company ID</b></td>
+        <tr>
+        <td align="left"><b>Company ID</b></td>
         <td align="left"><b>Company Name</b></td>
         <td align="left"><b>Quota</b></td></tr>';
 
         while($row = mysqli_fetch_array($response))
         {
-            echo '<tr><td align="left">' .
+            echo '<tr>
+            <td align="left">' .
             $row['cid'] . '</td><td align="left">' .
             $row['cname'] . '</td><td align="left">' .
-            $row['quota'] . '</td><td align="left"><button style="width: fit-content;">Cancel</button></td>';
+            $row['quota'] . '</td><td align="left">
+            <a href="cancel-successful.php?course=' . $row['cid'] . '"><button style="width: fit-content;">Cancel</button></a>
+            </td>';
 
             echo '</tr>';
         }
@@ -50,5 +54,11 @@ session_start();
     <header>
         <h1>Internship Application System</h1>
     </header>
+
+    <footer>
+        <a href="company-list.php">
+        <button id="new-internship-button" href="company-list.php">Apply for a new internship!</button>
+        </a>
+    </footer>   
 </body>
 </html>
